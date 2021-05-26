@@ -1,0 +1,58 @@
+{
+    "players": [
+        {
+            "name": "Franco",
+            "lastname": "Armani",
+            "role": "goalkeeper",
+            "team": "River Plate"
+        },
+        {
+            "name": "Esteban",
+            "lastname": "Andrada",
+            "role": "goalkeeper",
+            "team": "Boca Juniors"
+        },
+        {
+            "name": "Gabriel",
+            "lastname": "Arias",
+            "role": "goalkeeper",
+            "team": "Racing"
+        },
+        {
+            "name": "Enzo",
+            "lastname": "Perez",
+            "role": "midfielder",
+            "team": "River Plate"
+        },
+        {
+            "name": "Rafael Santos",
+            "lastname": "Borre",
+            "role": "striker",
+            "team": "River Plate"
+        },
+        {
+            "name": "Carlos",
+            "lastname": "Tevez",
+            "role": "striker",
+            "team": "Boca Juniors"
+        },
+        {
+            "name": "Franco",
+            "lastname": "Soldano",
+            "role": "striker",
+            "team": "Boca Juniors"
+        },
+        {
+            "name": "Angel",
+            "lastname": "Romero",
+            "role": "striker",
+            "team": "San Lorenzo"
+        },
+        {
+            "name": "Óscar",
+            "lastname": "Romero",
+            "role": "midfielder",
+            "team": "San Lorenzo"
+        }
+    ]
+}
