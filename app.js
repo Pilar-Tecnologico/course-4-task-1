@@ -46,10 +46,3 @@ app.put('/players', (req, res) => {
 app.listen(port, () => {
     console.log('Express server started at port ' + port);
 });
-
-// {
-//     "name": "nombre",
-//     "lastname": "apellido",
-//     "role": "posicion",
-//     "team": "equipo"
-// }
