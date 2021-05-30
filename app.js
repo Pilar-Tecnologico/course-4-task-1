@@ -2,17 +2,29 @@
 //For all the excersices Postman is recommended.
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
-const playersData = require('');//should require the data.json file
+const port = process.env.PORT || 3001;
+const playersData = require('./data.json');//should require the data.json file
 app.use(express.json());
 
 app.get('/players', (req, res) => {
     //should respond with the "players" array inside playersData and Status 200    
+    res.status(200).json(playersData.players);
 });
 
 app.get('/players/:role', (req, res) => {
     //should respond with only the players that have with the especified role. Status 200.
     //If there's no player with the specified role it should respond with {"error": "No player found"} and Status 404.
+    const playerRole = req.params.role;
+
+    const players = playersData.players.filter((player) => {
+        return player.role === playerRole;
+      });
+
+    if(players > 0) {
+        res.status(200).json(players);
+    } else {
+        res.status(404).json({status: 'error: No player found'});
+    }
 });
 
 app.put('/players', (req, res) => {
@@ -21,6 +33,29 @@ app.put('/players', (req, res) => {
     //Response should be {"operation": "add player", "status": "accepted"} with status 200 if the body request is valid.
     //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing.
     //The Only valid properties are the ones at every player object in data.json.
+    const player = req.body;
+    const properties = ['name', 'lastname', 'role', 'team'];
+    let count = 0;
+    let valid = true;
+    let acceptedMsg = {"operation": "add player", "status": "accepted"};
+    let rejectedMsg = {"operation": "add player", "status": "refused", "details": "Invalid body"};
+    let message = {};
+    let statusNumber = 200;
+    Object.keys(player).map((item, index) => {
+        if (!properties.includes(item)){
+            valid = false;
+        }
+        count++;        
+    })    
+    if(count !== properties.length) {valid = false;} 
+    if(valid === true) {
+        message = acceptedMsg;
+    } else {
+        statusNumber = 409
+        message = rejectedMsg;    
+    }
+    res.status(statusNumber).json(message);
+    console.log(JSON.stringify(message));
 });
 
 app.listen(port, () => {
