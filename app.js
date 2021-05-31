@@ -3,11 +3,23 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const playersData = require('');//should require the data.json file
+const playersData = require('./data.json');//should require the data.json file
 app.use(express.json());
 
 app.get('/players', (req, res) => {
-    //should respond with the "players" array inside playersData and Status 200    
+    //should respond with the "players" array inside playersData and Status 200   
+    try {
+        res.status(200).json({
+          data: playersData.players
+        });
+      } catch (err) {
+        res.status(404).json({
+          message: "Error",
+          err
+        });
+      }
+    
+    
 });
 
 app.get('/players/:role', (req, res) => {
