@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const playersData = require('');//should require the data.json file
+const playersData = require('./data.json');//should require the data.json file
 app.use(express.json());
 
 app.get('/players', (req, res) => {
