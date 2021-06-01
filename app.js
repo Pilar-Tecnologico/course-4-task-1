@@ -17,14 +17,21 @@ app.get('/players', (req, res) => {
           message: "Error",
           err
         });
-      }
-    
-    
-});
+      }    
+});  
 
 app.get('/players/:role', (req, res) => {
     //should respond with only the players that have with the especified role. Status 200.
     //If there's no player with the specified role it should respond with {"error": "No player found"} and Status 404.
+    
+    const reqRole = req.params.role;   
+    let playersByRole = playersData.players.filter((player) => player.role === reqRole);       
+    if(playersByRole.length > 0){
+      res.status(200).send(playersByRole);      
+     }else{
+      res.status(404).send("Player Not Found");
+      
+      }      
 });
 
 app.put('/players', (req, res) => {
