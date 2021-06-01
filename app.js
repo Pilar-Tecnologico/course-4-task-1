@@ -7,7 +7,17 @@ const playersData = require('./data.json');//should require the data.json file
 app.use(express.json());
 
 app.get('/players', (req, res) => {
-    //should respond with the "players" array inside playersData and Status 200    
+    //should respond with the "players" array inside playersData and Status 200
+    try {
+        res.status(200).json({
+          players: playersData.players
+        });
+      } catch (err) {
+        res.status(400).json({
+          message: "Error",
+          err
+        });
+      }    
 });
 
 app.get('/players/:role', (req, res) => {
