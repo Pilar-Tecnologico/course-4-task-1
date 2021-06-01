@@ -27,18 +27,13 @@ app.put('/players', (req, res) => {
     //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing. --Check
     //The Only valid properties are the ones at every player object in data.json. --Check
     const bodyData = req.body;
-    const props = ["name", "lastname", "role", "team"];
-    const checkProps = props.every(prop => prop in bodyData);
-    if (checkProps) {
-        const response = {"operation": "add player", "status": "accepted"};
-        res.status(200).json(response);
-        console.log(response);
-    }
-    else {
-        const response = {"operation": "add player", "status": "refused", "details": "Invalid body"}
-        res.status(409).json(response);
-        console.log(response);
-    };
+    const dataProps = Object.keys(bodyData).sort();
+    const props = ["name", "lastname", "role", "team"].sort();
+    const checkProps = dataProps.every((dataProp, index) => dataProp === props[index]);
+    const response = checkProps ? {"operation": "add player", "status": "accepted"} : {"operation": "add player", "status": "refused", "details": "Invalid body"};
+
+    checkProps ? res.status(200).json(response) : res.status(409).json(response);
+    console.log(response);
 });
 
 app.listen(port, () => {
