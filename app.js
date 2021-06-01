@@ -3,16 +3,25 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const playersData = require('');//should require the data.json file
+const playersData = require('./data.json');//should require the data.json file
 app.use(express.json());
 
 app.get('/players', (req, res) => {
     //should respond with the "players" array inside playersData and Status 200    
+    const playerAll = req.query.name
+    console.log(playerAll);
+    res.status(200).send(playerAll);
 });
 
 app.get('/players/:role', (req, res) => {
     //should respond with only the players that have with the especified role. Status 200.
     //If there's no player with the specified role it should respond with {"error": "No player found"} and Status 404.
+    const role = req.params.role;
+    playerData.players.forEach(player => {
+        if(player.role === role){
+            res.status(200).json(player);
+        }
+    });
 });
 
 app.put('/players', (req, res) => {
