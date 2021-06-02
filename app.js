@@ -23,7 +23,7 @@ app.get('/players/:role', (req, res) => {
     if (response.length > 0) {
         res.status(200).send(response);
     } else {
-        res.status(500).json({
+        res.status(404).json({
             error: "No player found"
         });
     }
