@@ -36,9 +36,9 @@ app.put('/players', (req, res) => {
     //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing.
     //The Only valid properties are the ones at every player object in data.json.
 
-    const { name, lastname, role, team } = req.query;
+    const { name, lastname, role, team } = req.body;
     if(name && lastname && role && team){
-            players.push(req.query) 
+            players.push(req.body) 
             res.status(200).json({
                 operation: "add player",
                  status: "accepted" 
