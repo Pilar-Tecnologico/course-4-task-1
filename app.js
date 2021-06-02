@@ -40,6 +40,15 @@ app.put('/players', (req, res) => {
     //Response should be {"operation": "add player", "status": "accepted"} with status 200 if the body request is valid.
     //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing.
     //The Only valid properties are the ones at every player object in data.json.
+    const reqBody = req.params.body;
+    let playersDataAdd = (playersData.name && playersData.lastname && playersData.role && playersData.team)    
+    if (playersDataAdd === reqBody){
+      res.status(200).json({"operation": "add player", "status": "accepted"});
+      console.log('"operation": "add player", "status": "accepted"');
+    }else{
+      res.status(409).json({"operation": "add player", "status": "refused", "details": "Invalid body"});
+      console.log('"operation": "add player", "status": "refused", "details": "Invalid body"');
+    }  
 });
 
 app.listen(port, () => {
