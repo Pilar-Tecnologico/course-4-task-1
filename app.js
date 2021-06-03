@@ -2,14 +2,14 @@
 //For all the excersices Postman is recommended.
 const express = require("express");
 const app = express();
-//const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const playersData = require("./data.json"); //should require the data.json file
 app.use(express.json());
 const _ = require("underscore");
 
 app.get("/players", (req, res) => {
   //should respond with the "players" array inside playersData and Status 200
-  res.json(playersData);
+  res.json(playersData.players);
 });
 
 app.get("/players/:role", (req, res) => {
@@ -21,7 +21,7 @@ app.get("/players/:role", (req, res) => {
       res.status(200).json(players);
     }
   });
-  res.status(404).json({ status: "error: No role found" });
+  res.status(404).json({ status: "error: No player found" });
 });
 
 app.put("/players/:id", (req, res) => {
@@ -53,6 +53,6 @@ app.put("/players/:id", (req, res) => {
   }
 });
 
-app.listen(3001, () => {
+app.listen(port, () => {
   console.log("Express server started at port ");
 });
