@@ -22,6 +22,15 @@ app.get('/players', (req, res) => {
 
 app.get('/players/:role', (req, res) => {
     //should respond with only the players that have with the especified role. Status 200.
+    
+    const roles= req.params.role;
+    const plRole= playersData.players.filter(elem => elem.role === roles)
+    if(plRole.length>0){
+        res.status(200).json(plRole)
+    }
+    else{
+        res.status(404).json({"error": 'Player not found'})
+    }
     //If there's no player with the specified role it should respond with {"error": "No player found"} and Status 404.
 });
 
