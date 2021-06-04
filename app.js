@@ -28,18 +28,23 @@ app.get('/players/:role', (req, res) => {
 
 app.put('/players', (req, res) => {
     //Should recive player data from request body.
-    //Should console.log the response.
-    //Response should be {"operation": "add player", "status": "accepted"} with status 200 if the body request is valid.
-    //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing.
-    //The Only valid properties are the ones at every player object in data.json.
+    const exampleData = ['name', 'lastname', 'role','team'].sort().toString();
     const bodyData = req.body;
+    const validKeys = Object.keys(req.body).sort().toString();
+    //Should console.log the response.
     console.log(bodyData)
-   
-    if(bodyData.name && bodyData.lastname && bodyData.role && bodyData.team){
+
+    //The Only valid properties are the ones at every player object in data.json.
+    if(exampleData === validKeys){
+        //Response should be {"operation": "add player", "status": "accepted"} with status 200 if the body request is valid.
         res.status(200).json({operation: "add player", status: "accepted"})
     }else{
-        res.status(400).json({operation: "add player", status: "refused", details: "Invalid body"})
+        //Response should be {"operation": "add player", "status": "refused", "details": "Invalid body"} with status 409 if any property is missing.
+        res.status(409).json({operation: "add player", status: "refused", details: "Invalid body"})
     }
+    
+   
+    
     
 });
 
