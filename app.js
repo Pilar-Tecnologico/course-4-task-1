@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/players', (req, res) => {
   //should respond with the "players" array inside playersData and Status 200
-  res.send(playersData.players).status(200);
+  res.status(200).send(playersData.players);
 });
 
 app.get('/players/:role', (req, res) => {
@@ -19,7 +19,7 @@ app.get('/players/:role', (req, res) => {
   });
 
   playersByRole.length > 0
-    ? res.send(playersByRole).status(200)
+    ? res.status(200).send(playersByRole)
     : res.send({ error: 'No Player found' }).status(404);
 });
 
@@ -42,16 +42,16 @@ app.put('/players', (req, res) => {
   if (validProperties.length === reqDataProperties.length) {
     for (let index = 0; index < validProperties.length; index++) {
       if (validProperties[index] !== reqDataProperties[index]) {
-        res.send(refusedBody).status(409);
+        res.status(409).send(refusedBody);
         console.log('RES =>', refusedBody, 'status: 409');
         return;
       }
     }
 
-    res.send(acceptedBody).status(200);
+    res.status(200).send(acceptedBody);
     console.log('RES =>', acceptedBody, 'status: 200');
   } else {
-    res.send(refusedBody).status(409);
+    res.status(409).send(refusedBody);
     console.log('RES =>', refusedBody, 'status: 409');
   }
 });
