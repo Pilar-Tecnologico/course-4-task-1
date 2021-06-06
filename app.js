@@ -26,14 +26,13 @@ app.get('/players/:role', (req, res) => {
     let { role } = req.params;    
     try {
         let playersrole = playersData.players.filter(player => player.role===role);
-        if(playersrole!==[])
+        if(playersrole.length>0)
           res.status(200).json({
             data: playersrole
           });
         else
           res.status(404).json({
-            message: "No player found",
-            err
+            message: "No player found"
           });
       } catch (err) {
         res.status(400).json({
