@@ -42,15 +42,15 @@ app.put("/players", (req, res) => {
 		status: "refused",
 		details: "Invalid body",
 	};
-	let value;
+	let flag;
 
 	Object.keys(body).forEach((key) => {
 		if (!keys.some((k) => k === key)) {
-			value = true;
+			flag = true;
 		}
 	});
 
-	if (value) {
+	if (flag) {
 		res.status(409).json(respRefused);
 		console.log(respRefused);
 		return;
