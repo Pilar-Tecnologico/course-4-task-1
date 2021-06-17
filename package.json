@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "prueba",
   "version": "1.1.0",
@@ -24,3 +25,23 @@
   "homepage": "https://github.com/restebanlm/course-4-task-1#readme",
   "description": ""
 }
+=======
+{
+  "name": "intro-to-express",
+  "version": "1.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Esteban Luna Mercado",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
+>>>>>>> d20666ab615743ba3bb5615ef0e9e9d463e2ec17
